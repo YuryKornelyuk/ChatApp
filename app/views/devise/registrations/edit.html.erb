@@ -4,6 +4,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <% if resource.avatar.attached? %>
+      <%= image_tag(resource.avatar_thumbnail) %>
+    <% else %>
+      <%= image('/assets/default_avatar.jpg', style: 'width:50px; height:50px;') %>
+    <% end %>
+
+    <%= f.file_field :avatar %>
+
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
