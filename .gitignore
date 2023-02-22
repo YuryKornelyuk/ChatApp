@@ -34,8 +34,11 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore Redmine files
-.idea
+# Ignore Rubymine files
+/.idea
 
 # Ignore bundle files
 /vendor/bundle
+
+/.bin
+/.bin_old
