@@ -8,10 +8,14 @@ class User < ApplicationRecord
   after_update_commit { broadcast_update }
   has_many :messages
   has_one_attached :avatar
+  has_many :joinables, dependent: :destroy
+  has_many :joined_rooms, through: :joinables, source: :room
 
   enum status: %i[offline away online]
+  enum role: %i[user admin]
 
   after_commit :add_default_avatar, on: %i[create update]
+  after_initialize :set_default_role, if: :new_record?
 
   def avatar_thumbnail
     avatar.variant(resize_to_limit: [150, 150]).processed
@@ -25,16 +29,20 @@ class User < ApplicationRecord
     broadcast_replace_to 'user_status', partial: 'users/status', user: self
   end
 
+  def has_joined_room(room)
+    joined_rooms.include?(room)
+  end
+
   def status_to_css
     case status
     when 'offline'
-      'bg-secondary'
+      'bg-dark'
     when 'away'
       'bg-warning'
     when 'online'
       'bg-success'
     else
-      'bg-secondary'
+      'bg-dark'
     end
   end
 
@@ -47,5 +55,9 @@ class User < ApplicationRecord
       filename: 'default_avatar.jpg',
       content_type: 'image/jpg'
     )
+  end
+
+  def set_default_role
+    self.role ||= :user
   end
 end

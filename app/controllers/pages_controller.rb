@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   after_action :set_status
-  def home
-  end
+  def home; end
 
   private
 
