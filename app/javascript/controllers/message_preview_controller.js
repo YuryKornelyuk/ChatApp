@@ -22,7 +22,7 @@ export default class extends Controller {
     /**
      * Toggle the visibility of the preview div.
      */
-    toggleVisiblity() {
+    toggleVisibility() {
         let preview = document.getElementById("attachment-previews");
         preview.classList.toggle("d-none");
     }
@@ -202,7 +202,7 @@ export default class extends Controller {
         fileInput.files = dataTransfer.files;
 
         if (filesArray.length === 0) {
-            this.toggleVisiblity()
+            this.toggleVisibility();
         }
     }
     /**

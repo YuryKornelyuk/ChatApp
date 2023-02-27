@@ -18,7 +18,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
 
   def avatar_thumbnail
-    avatar.variant(resize_to_limit: [150, 150]).processed
+    avatar.variant(resize_to_limit: [150, 150])
   end
 
   def chat_avatar
