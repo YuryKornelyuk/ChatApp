@@ -6,7 +6,7 @@ class Message < ApplicationRecord
 
   after_create_commit do
     update_parent_room
-    broadcast_append_to room
+    broadcast_append_later_to room
   end
 
   def chat_attachment(index)
@@ -14,9 +14,9 @@ class Message < ApplicationRecord
     return unless attachments.attached?
 
     if target.image?
-      target.variant(resize_to_limit: [150, 150])
+      target.variant(resize_to_limit: [150, 150]).processed
     elsif target.video?
-      target.variant(resize_to_limit: [150, 150])
+      target.variant(resize_to_limit: [150, 150]).processed
     end
   end
 

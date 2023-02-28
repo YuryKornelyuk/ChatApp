@@ -5,16 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   scope :all_except, ->(user) { where.not(id: user) }
   after_create_commit { broadcast_append_to 'users' }
-  after_update_commit { broadcast_update }
+  after_update_commit :broadcast_update
   has_many :messages
   has_one_attached :avatar
   has_many :joinables, dependent: :destroy
   has_many :joined_rooms, through: :joinables, source: :room
 
-  enum status: %i[offline away online]
   enum role: %i[user admin]
+  enum status: %i[offline away online]
 
   after_commit :add_default_avatar, on: %i[create update]
+
   after_initialize :set_default_role, if: :new_record?
 
   def avatar_thumbnail
@@ -35,12 +36,12 @@ class User < ApplicationRecord
 
   def status_to_css
     case status
-    when 'offline'
-      'bg-dark'
-    when 'away'
-      'bg-warning'
     when 'online'
       'bg-success'
+    when 'away'
+      'bg-warning'
+    when 'offline'
+      'bg-dark'
     else
       'bg-dark'
     end
@@ -50,6 +51,7 @@ class User < ApplicationRecord
 
   def add_default_avatar
     return if avatar.attached?
+
     avatar.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', 'default_avatar.jpg')),
       filename: 'default_avatar.jpg',
