@@ -16,7 +16,7 @@ export default class extends Controller {
       // Use traditional 'for loops' for IE 11
       for (const mutation of mutationsList) {
         if (mutation.type === "childList") {
-          console.log("A child node has been added or removed.");
+          console.log("A room child node has been added or removed.");
           const sortedList = sortByLastMessage(rooms);
 
           modifyRooms(rooms, sortedList, observer, config);
