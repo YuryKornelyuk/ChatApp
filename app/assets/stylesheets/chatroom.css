@@ -123,3 +123,25 @@
   color: white;
   text-decoration: underline white;
 }
+.msg-role-user {
+  color: #00ff8c;
+}
+.msg-role-admin {
+  color: #00e5ff;
+}
+#message-preview-card {
+  background: #222;
+  border-radius: 0;
+}
+#message-preview {
+  animation: fadein 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

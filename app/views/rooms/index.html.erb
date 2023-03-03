@@ -10,8 +10,8 @@
           <%= render 'users/status', user: current_user %>
         </div>
       </div>
-      <div class='ms-2 me-auto username'>
-        <%= current_user.email%>
+      <div class="ms-2 me-auto username msg-role-<%= current_user.role %>">
+        <%= current_user.email %>
       </div>
     </li>
     <h4> Users </h4>

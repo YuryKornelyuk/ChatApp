@@ -1,10 +1,18 @@
 class PagesController < ApplicationController
+  before_action :recent_messages, only: [:home]
   after_action :set_status
-  def home; end
+  def home
+    recent_messages
+  end
 
   private
 
   def set_status
     current_user.update!(status: User.statuses[:offline]) if current_user
+  end
+
+  def recent_messages
+    public_rooms = Room.public_rooms
+    @messages = Message.where(room: public_rooms).order(created_at: :desc).limit(10)
   end
 end
