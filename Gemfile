@@ -84,3 +84,5 @@ gem 'simple_form', '~> 5.2'
 gem 'pagy', '~> 6.0'
 
 gem "noticed", "~> 1.6"
+
+gem "redcarpet", "~> 3.6"
