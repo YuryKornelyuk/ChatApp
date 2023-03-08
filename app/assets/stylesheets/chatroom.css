@@ -124,10 +124,10 @@
   text-decoration: underline white;
 }
 .msg-role-user {
-  color: #00ff8c;
+  color: #00ff8c !important;
 }
 .msg-role-admin {
-  color: #00e5ff;
+  color: #00e5ff !important;
 }
 #message-preview-card {
   background: #222;
