@@ -13,6 +13,6 @@ class PagesController < ApplicationController
 
   def recent_messages
     public_rooms = Room.public_rooms
-    @messages = Message.where(room: public_rooms).order(created_at: :desc).limit(10)
+    @messages = Message.where(room: public_rooms).order(created_at: :desc).limit(5)
   end
 end
