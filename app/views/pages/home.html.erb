@@ -2,6 +2,7 @@
   <div class="col-8" style="padding: 0;">
     <div class="card p-5">
       <h1>Chat Application</h1>
+      <p>There are <strong><%= pluralize(@online_users, 'User') %></strong> Online</p>
       <% if current_user %>
         <p>Logged in as <%= current_user.username %></p>
         <p><%= image_tag(current_user.avatar_thumbnail) %></p>
