@@ -7,11 +7,11 @@
             <%= image_tag(message.chat_attachment(index), class: "message-image") %>
           </div>
         <% elsif attachment.video? %>
-          <%= video_tag(url_for(attachment), class:'message-video', controls:'') %>
+          <%= video_tag(url_for(attachment), class: 'message-video', controls: '') %>
         <% elsif attachment.audio? %>
-          <%= audio_tag(url_for(attachment), class:'message-audio', controls: '') %>
+          <%= audio_tag(url_for(attachment), class: 'message-audio', controls: '') %>
         <% else %>
-          <%= link_to attachment.filename, url_for(attachment), class:'message-file' %>
+          <%= link_to attachment.filename, url_for(attachment), class: 'message-file' %>
         <% end %>
       </div>
     <% end %>

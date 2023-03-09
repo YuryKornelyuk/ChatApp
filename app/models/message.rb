@@ -16,6 +16,7 @@ class Message < ApplicationRecord
   def chat_attachment(index)
     target = attachments[index]
     return unless attachments.attached?
+    return target if target.content_type.eql?('image/gif')
 
     if target.image?
       target.variant(resize_to_limit: [150, 150]).processed
