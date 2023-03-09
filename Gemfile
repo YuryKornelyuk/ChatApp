@@ -86,3 +86,7 @@ gem 'pagy', '~> 6.0'
 gem 'noticed', '~> 1.6'
 
 gem 'redcarpet', '~> 3.6'
+
+gem "chartkick", "~> 5.0"
+
+gem "groupdate", "~> 6.2"
