@@ -6,7 +6,6 @@ class Message < ApplicationRecord
 
   validate :validate_attachment_filetypes
 
-
   after_create_commit do
     notify_recipients
     update_parent_room
@@ -64,9 +63,8 @@ class Message < ApplicationRecord
     return unless attachments.attached?
 
     attachments.each do |attachment|
-      unless attachment.content_type.in?(%w[image/jpeg image/png image/gif video/mp4 video/mpeg audio/x-wav
-                                            audio/mp3])
-        errors.add(:attachments, 'must be a JPEG, PNG, GIF, MP4, MP3, or WAV file')
+      unless attachment.content_type.in?(%w[image/jpeg image/png image/gif video/mp4 video/mpeg audio/x-wav audio/ogg audio/mp3])
+        errors.add(:attachments, 'must be a JPEG, PNG, GIF, MP4, MP3, OGG, or WAV file')
       end
     end
   end

@@ -16,6 +16,4 @@ class PagesController < ApplicationController
     public_rooms = Room.public_rooms
     @messages = Message.where(room: public_rooms).order(created_at: :desc).limit(5)
   end
-
-
 end
