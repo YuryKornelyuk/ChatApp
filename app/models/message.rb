@@ -4,7 +4,7 @@ class Message < ApplicationRecord
   before_create :confirm_participant
   has_many_attached :attachments, dependent: :destroy
 
-  validate :validate_attachment_filetypes
+  # validate :validate_attachment_filetypes
 
   after_create_commit do
     notify_recipients
